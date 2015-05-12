@@ -7,7 +7,7 @@ class DBLogin:
         self.hostaddr = ''
         self.portnum = -1
         
-    # Getter functions
+    # Getter methods
     def getusername(self):
         return self.username        
     def getpassword(self):
@@ -17,22 +17,22 @@ class DBLogin:
     def getportnum(self):
         return self.portnum
         
-    # Function - promptForUserName
+    # Method - promptForUserName
     # Description - asks the user to input their username to authenticate
     def promptForUserName(self):
         self.username = input('Enter your username: ')
     
-    # Function - promptForPassword
+    # Method - promptForPassword
     # Description - asks the user to input their password to authenticate
     def promptForPassword(self):
         self.password = getpass.getpass('Enter your password: ')
         
-    # Function - promptForAddr
+    # Method - promptForAddr
     # Description - asks the user to input the db's address
     def promptForAddr(self):
         self.hostaddr = input('Enter the address of the database: ')
 
-    # Function - promptForPort
+    # Method - promptForPort
     # Description - asks the user to input the db's port number
     def promptForPort(self):
         while True:
@@ -43,14 +43,16 @@ class DBLogin:
             else:
                 print('Invalid entry. Port number must be between 0 and 65,535.')
                 
-    # Function - loginPrompt
+    # Method - loginPrompt
     # Description - prompts the user enter information to login
     def loginPrompt(self):
         self.promptForAddr()
         self.promptForPort()
         self.promptForUserName()
         self.promptForPassword()
-        
+    
+    # Method - connectToDBMS
+    # Description - connects to the DBMS and returns an object representing the connection 
     def connectToDBMS(self):
         try:
             connection = mysql.connector.connect(user=self.username, password=self.password, host=self.hostaddr, port=self.portnum)
@@ -61,10 +63,3 @@ class DBLogin:
                 print(err)
         else:
             return connection
-                
-    def debugPrint(self):
-        print("Username: " + self.username)
-        print("Password: " + self.password)
-        print("DB address: " + self.hostaddr)
-        print("DB port: " + str(self.portnum))
-                
