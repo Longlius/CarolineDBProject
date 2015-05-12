@@ -8,5 +8,5 @@ CONLANG_DB = CONLANG_NAME + "DB"
 
 x = dblogin.DBLogin()
 x.loginPrompt()
-print("------ DEBUG ------")
-x.debugPrint()
+y = x.connectToDBMS()
+y.close()
